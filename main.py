@@ -331,20 +331,19 @@ async def on_message(message):
     embed.set_author(name=f"{message.author.name} 님의 도움말",icon_url=message.author.avatar_url)
     embed.add_field(name="핑", value=f">>> {int((client.latency * 1000))}'ms", inline = False)
     embed.add_field(name="제작 기간", value=f">>> 2020-12-17 ~", inline = False)
+    embed.add_field(name="사용 모듈", value=f">>> **[Hcskr](https://github.com/331leo/hcskr_python)** 오픈소스를 이용해 제작된 봇입니다", inline = False)
     embed.add_field(name="프로필 정보", value=f"- 수세밀네님 커미션 \n>>> 인스타그램 : @susamilneh\n디스코드 : Susamilneh#1000\n이메일 : sumichip0215@naver.com ", inline = False)
     embed.set_image(url='https://media.discordapp.net/attachments/789461017813712908/800991990568845352/Untitled-1.png')
-    embed.set_footer(text=dev)
+    embed.set_footer(,text=dev)
     await message.reply(embed=embed,content='https://discord.gg/XnAqJW2huv', mention_author=True)
   
   if message.content.startswith('진단아'):
     BASEURL = "https://api.koreanbots.dev"
     token = config.koreanbots_token
     userID = message.author.id
-
     response = get(f'{BASEURL}/bots/voted/{userID}', headers={"token":token})
     u = response.json()
     vote = (u['voted'])
-
     if vote == True:
       pass
     else:
