@@ -6,6 +6,7 @@ from discord.ext import commands
 from interface import is_confirmed
 import traceback
 import discord
+import config
 
 class Admin(commands.Cog):
     def __init__(self, bot):
