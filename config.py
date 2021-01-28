@@ -1,2 +1,2 @@
-token = ''
-koreanbots_token = ''
+token = 'Nzg5NDUyNDUzNDAxNzIyOTIw.X9yQ5A.8DPimkKBMmhUVycHA5dKBn4EpGM'
+koreanbots_token = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc4OTQ1MjQ1MzQwMTcyMjkyMCIsImlhdCI6MTYwOTEyODc2MSwiZXhwIjoxNjQwNjg2MzYxfQ.RfTjBea0pfsFKAiI7YIGgX92k7E_7_IpjyJzb862se57DroG9kjmpqCqRrqsPYxZ__41W3LA27wQmYjZ8IOiuY76eFiKQKn1t4tt00vh8HNmWRG7RTx-hyEB9onY6nCtWF91ploT0n5yjWqniqQnRY4cfhmU6faKwt5GQTfRt7w'
