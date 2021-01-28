@@ -1,0 +1,2 @@
+token = ''
+koreanbots_token = ''
