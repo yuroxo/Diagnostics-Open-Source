@@ -1,0 +1,5 @@
+openpyxl
+discord
+python-dateutil
+koreanbots
+hcskr
