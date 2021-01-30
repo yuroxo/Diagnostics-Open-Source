@@ -12,3 +12,10 @@ class check:
             return True
         raise exceptions.NotRegistered
 
+    async def jindanRegistered(self, ctx):
+        db_user = await self.db.users.find_one({"discordId": ctx.author.id})
+        if not db_user:
+            raise exceptions.NotRegistered
+        if not db_user.get("token", None):
+            raise exceptions.JindanNotRegistered
+        return True
