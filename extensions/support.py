@@ -26,7 +26,6 @@ class SupportCog(commands.Cog):
         embed.add_field(name="4. 개인정보 저장 방법 및 정보보호", value=f"``사용자의 개인정보는 모두 HS256암호화 되어 안전하게 저장됩니다.``", inline= False)
         embed.add_field(name="5. 개인정보의 보유 및 이용기간", value=f"``자가진단 봇의 서비스 종료일 까지.``", inline= False)
         embed.add_field(name="개인정보 제 3자 제공 안내", value=f"``자가진단 봇 에서는 수집된 정보를 제3자에게 제공하지 않습니다.``", inline= False)
-        embed.add_field(name="🔔 교육의 목적으로 개인정보 일부 사용", value=f"학교에서 발표를 목적으로 완전한 개인 정보가 아닌, 지역과 학급 같은 단순 통개 자료를 사용함에 동의 함으로 간주합니다.", inline= False)
         msg = await ctx.reply(embed=embed)
         if await utils.is_confirmed(ctx, msg):
             await self.db.users.insert_one({"discordId": ctx.author.id})
