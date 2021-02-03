@@ -1,15 +1,22 @@
 import discord
-from discord.ext import commands
+from discord.ext import commands, tasks
 import utils
 import config
-
+from itertools import cycle
 class CheckCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.db = bot.db
         self.logger = bot.logger
         self.check = utils.check(bot.db)
+        self.statusList = cycle(config.bot_status)
+        self.change_bot_status.start()
     
+    @tasks.loop(seconds=10)
+    async def change_bot_status(self):
+        await self.bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening,name=next(self.statusList).format(server_count=len(self.bot.guilds), user_count=await self.bot.db.users.count_documents({}))))
+
+
     @commands.Cog.listener()
     async def on_guild_join(self, guild):
         def check(event):
@@ -17,7 +24,7 @@ class CheckCog(commands.Cog):
         bot_entry = await guild.audit_logs(action=discord.AuditLogAction.bot_add).find(check)
         embed = utils.info_embed("안녕하세요? 저는 **진단이** 입니다!",f"명령어를 보고 싶으시다면 ``{config.command_prefixes[0]}도움말`` 을 입력하세요.\n\n>>> [**디스코드 지원 서버**](https://discord.gg/XnAqJW2huv)",f"{guild.name} 서버에 초대해주셔서 정말로 감사합니다!")
         embed.set_image(url='https://media.discordapp.net/attachments/789461017813712908/800991990568845352/Untitled-1.png')
-        self.logger.info(f"GuildJoin: {guild.name}({guild.id}) 길드에 {bot_entry}({bot_entry.id})님이 봇을 추가하였습니다!")
+        self.logger.info(f"GuildJoin: {guild.name}({guild.id}) 길드에 {bot_entry.user}({bot_entry.id})님이 봇을 추가하였습니다!")
         try:
             await bot_entry.user.send(embed=embed)
         except:
