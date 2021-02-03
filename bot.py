@@ -2,7 +2,7 @@ import json
 import logging
 import logging.config
 import os
-
+import datetime
 from discord.ext import commands
 from dotenv import load_dotenv
 import config
@@ -17,13 +17,14 @@ with open("logging.json") as f:
 class JindanBot(commands.AutoShardedBot):
 
     async def on_ready(self):
-        self.logger.info(f"Logged in as {self.user}")
+        print(f"Logged in as {self.user} at {str(datetime.datetime.now())[:16]}")
+        self.logger.info(f"Logged in as {self.user} at {str(datetime.datetime.now())[:16]}")
 
     async def on_error(self, event, *args, **kwargs):
         self.logger.exception("")
 
     def __init__(self, logger):
-        super().__init__(commands.when_mentioned_or(*config.command_prefixes), intents=discord.Intents.default())
+        super().__init__(commands.when_mentioned_or(*config.command_prefixes), intents=discord.Intents.default(),shard_count=8)
         if len(config.mongodb_username) > 1:
             self.dbclient = motor.motor_asyncio.AsyncIOMotorClient(f"mongodb://{config.mongodb_username}:{config.mongodb_password}@{config.mongodb_host}:{config.mongodb_port}")
         else:

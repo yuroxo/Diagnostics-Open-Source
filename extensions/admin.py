@@ -24,6 +24,7 @@ class Admin(commands.Cog):
         else:
             await ctx.send(f"extensions.{path} 모듈을 리로드 하는중...")
             self.bot.reload_extension(f"extensions.{path}")
+        
         await ctx.send(f"모듈 리로드 성공")
 
     @commands.command(name='eval')
