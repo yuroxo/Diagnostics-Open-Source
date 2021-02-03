@@ -24,7 +24,8 @@ class JindanBot(commands.AutoShardedBot):
         self.logger.exception("")
 
     def __init__(self, logger):
-        super().__init__(commands.when_mentioned_or(*config.command_prefixes), intents=discord.Intents.default(),shard_count=8)
+        print("Starting Up Bot... Wait until next message")
+        super().__init__(commands.when_mentioned_or(*config.command_prefixes), intents=discord.Intents.default(), shard_count=8)
         if len(config.mongodb_username) > 1:
             self.dbclient = motor.motor_asyncio.AsyncIOMotorClient(f"mongodb://{config.mongodb_username}:{config.mongodb_password}@{config.mongodb_host}:{config.mongodb_port}")
         else:

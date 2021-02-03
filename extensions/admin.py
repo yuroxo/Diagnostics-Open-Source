@@ -26,7 +26,13 @@ class Admin(commands.Cog):
             self.bot.reload_extension(f"extensions.{path}")
         
         await ctx.send(f"모듈 리로드 성공")
-
+    @commands.command(name="shutdown", aliases=["종료"], brief="봇 종료")
+    @commands.guild_only()
+    async def shutdown(self, ctx: commands.Context):
+        prompt = await ctx.send("봇을 종료할까요?")
+        if await is_confirmed(ctx, prompt):
+            await ctx.send("ㅂㅇ")
+            await ctx.bot.logout()
     @commands.command(name='eval')
     async def _eval(self, ctx: commands.Context, *, arg):
         try:

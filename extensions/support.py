@@ -36,7 +36,7 @@ class SupportCog(commands.Cog):
             await msg.edit(embed=utils.error_embed(f"{config.no_emoji} 이용약관 동의를 취소하였습니다.",None,author=ctx.author))
     @commands.command(name="도움말", usage=f"")
     async def Help(self, ctx):
-        embed = utils.info_embed("진단이 도움말", ">>> [**초대하기**](https://discord.com/api/oauth2/authorize?client_id=789452453401722920&permissions=650368&scope=bot)", author=ctx.author)
+        embed = utils.info_embed("진단이 도움말", f">>> [**초대하기**](https://discord.com/api/oauth2/authorize?client_id={self.bot.user.id}&permissions=650368&scope=bot)", author=ctx.author)
         embed.add_field(name="진단아 도움말", value=f"``진단이의 정보와 명령어를 알려 줍니다.``", inline= False)
         embed.add_field(name="진단아 가입", value=f"``진단이 서비스에 가입합니다.``", inline= False)
         embed.add_field(name="진단아 설정 [이름] [비밀번호] [생년월일6자] [지역권] [학교급] [학교]", value=f"``자가진단 기능에 필요한 정보를 설정 합니다.``", inline= False)
